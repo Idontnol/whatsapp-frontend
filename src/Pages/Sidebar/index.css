@@ -1,0 +1,16 @@
+.sidebar-option{
+    height:45px;
+    width:154px;
+    background-color: #fadb41;
+    border:none;
+    outline: none;
+    border-radius:8px;
+    font-weight:bold;
+}
+.sidebar-container{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    justify-content:center;
+    gap:5%;
+}
