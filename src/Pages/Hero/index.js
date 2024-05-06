@@ -4,17 +4,17 @@ import './index.css'
 import { dataContext } from '../../Context/data';
 
 const Hero=()=>{
-    const {data,setData,setMessage,message}=useContext(dataContext)
-    const [details,setDetails]=useState(data);
+    const {data,setMessage,message,details,setDetails,setAttachFile}=useContext(dataContext)
+    // const [details,setDetails]=useState(data);
+
     
     const [checkAll,setCheckAll]=useState(false);
 
-
     useEffect(()=>{
-        setData(details);
+        setDetails(data);
         console.log('times')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[details])
+    },[data])
 
     const handleCheckboxChange = (index) => (event) => {
         const updatedDetails = [...details];
@@ -34,19 +34,9 @@ const Hero=()=>{
     }
 
     const handleFileChange = (event) => {
-        
         const file = event.target.files[0];
         console.log(file)
-
-        // ExcelJS.xlsx(file).then((data) => {
-        //   // Process the parsed data
-        //   const worksheet = data.sheets[data.sheetNames[0]]; // Get first worksheet
-        //   const parsedDetails = worksheet.data.slice(1); // Skip header row
-        //   console.log(parsedDetails,"given data");
-        // //   setDetails(parsedDetails); // Update state with parsed data
-        // }).catch((error) => {
-        //   console.error(error); // Handle errors
-        // });
+        setAttachFile(file)
       };
       
 
@@ -59,7 +49,7 @@ const Hero=()=>{
                     <button className="attach-btn">Attachment</button>
                     <div class="file-input">
                         <label class="custom-file-upload">
-                            <input type="file" onchange={handleFileChange} />
+                            <input type="file" onChange={handleFileChange} />
                             Browse
                         </label>
                     </div>
@@ -71,7 +61,7 @@ const Hero=()=>{
                 <label className='table-cell' htmlFor='checkbox-header'>ALL<input type="checkbox" onChange={handleAllCheckBoxes} id="checkbox-header" /></label>
                 <span className='table-cell'>STATUS</span>
             </div>
-            {details && <div >
+            {details && <div className='table-footer'>
                 {details.map((detail,index)=>{
                     const {name,number,check,status }= detail;
                     return(<div className='table-values'>

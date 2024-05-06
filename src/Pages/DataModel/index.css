@@ -1,0 +1,50 @@
+.datamodel-container{
+    position: absolute;
+    height:500px;
+    width:500px;
+    top:21vh;
+    left:36vw;
+    background-color:#fadb41;
+}
+.hide{
+    display:none;
+}
+.dataModelClose{
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-end;
+    margin:8px;
+}
+.excel-btn{
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+.excel-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+.datamodel-outer{
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,1,0.4);
+    top:0;
+    left:0px;
+    position:absolute;
+}
+.apiEnter{
+    border-radius:5px;
+    border:none;
+    outline:none;
+    height:5%;
+    width:75%;
+    padding-left:4px;
+}

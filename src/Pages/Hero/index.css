@@ -6,9 +6,7 @@
     border-radius:9px;
     padding:5px 10px;
 }
-::placeholder{
-    color:#fff;
-}
+
 .message-box{
     background-color:#2749a8;
     color:#fff;
@@ -32,7 +30,8 @@
     cursor:pointer;
 }
 .hero-container{
-    width:85%;
+    width:83%;
+    box-sizing: border-box;
 }
 .choose-data{
     display:flex;
@@ -73,6 +72,10 @@
     flex-direction:row;
     justify-content:space-evenly;
 }
+.table-footer{
+    height:70%;
+    overflow-y:auto;
+}
 .table-values{
     width:100%;
     display:flex;
@@ -106,8 +109,22 @@
     cursor: pointer;
   }
 .success-message{
-    background-color:green;
+    background-color:#00FF00;
+    color:#fff;
 }
+
 .failure-message{
-    background-color:red;
+    background-color:#FF0000;
+    color:#fff;
+}
+
+.success-message:hover{
+    background-color:#07f533;
+
+}
+.failure-message:hover{
+    background-color:#eb0505;
+}
+.message-box::placeholder {
+    color: #fff; /* Set placeholder color to white */
 }

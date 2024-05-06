@@ -6,6 +6,7 @@
     outline: none;
     border-radius:8px;
     font-weight:bold;
+    cursor:pointer;
 }
 .sidebar-container{
     display:flex;
@@ -13,4 +14,5 @@
     height:100%;
     justify-content:center;
     gap:5%;
+    padding:0% 2%;
 }
