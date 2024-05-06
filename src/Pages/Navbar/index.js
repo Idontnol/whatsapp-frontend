@@ -2,6 +2,7 @@ import {useContext} from 'react';
 
 import './index.css'
 import { dataContext } from '../../Context/data';
+import { baseUrl } from '../../utils/util';
 
 const Navbar=()=>{
    
@@ -22,7 +23,7 @@ const Navbar=()=>{
                 body:JSON.stringify(requiredDataFormat)
             }
             console.log(options)
-            const response = await fetch('http://localhost:8081/sendmsg',options);
+            const response = await fetch(baseUrl+'sendmsg',options);
     
             // if(response){
                 const result= await response.json();
