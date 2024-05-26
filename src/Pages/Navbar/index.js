@@ -2,7 +2,7 @@ import {useContext} from 'react';
 
 import './index.css'
 import { dataContext } from '../../Context/data';
-import { baseUrl } from '../../utils/util';
+import { baseUrl } from '../../utils/new';
 
 const Navbar=()=>{
    
@@ -65,7 +65,7 @@ const Navbar=()=>{
             }
             console.log(options)
             try{
-                const response = await fetch('http://localhost:8081/sendfilemsg',options);
+                const response = await fetch(baseUrl+'sendfilemsg',options);
         
                 const result= await response.json();
                 console.log(result);
@@ -96,7 +96,7 @@ const Navbar=()=>{
 
     return(
         <div className="navbar-container">
-            <h3 className='navbar-title'>JS WA Sender</h3>
+            <h3 className='navbar-title'>Wizzmedia WA Sender</h3>
             <span className='navbar-right'>
                 <button className='filter-btn btn'>FILTER</button>
                 <button className='send-btn btn' onClick={sendData}>SEND</button>
