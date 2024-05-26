@@ -12,10 +12,39 @@
     color:#fff;
     border-radius:9px;
     padding-left:8px;
-    width:80%;
+    width:70%;
     border:none;
     outline:none;
     font-size:18px;
+    height:40px;
+}
+.save-option{
+    color:#fff;
+    height:20px;
+    width:23px;
+}
+.export-option{
+    height:40px;
+    width:110px;
+    background-color: #fadb41;
+    border:none;
+    outline: none;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    transition: background-color 0.2s ease-in-out;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin:5px 0px;
+}
+.export-option:hover{
+    cursor:pointer;
+    background-color:#dec02f;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .message-btn{
     color:white;
@@ -35,6 +64,7 @@
 }
 .choose-data{
     display:flex;
+    align-items:center;
 }
 .collect-data{
     display:flex;

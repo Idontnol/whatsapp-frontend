@@ -9,6 +9,8 @@ const DataModel=()=>{
     const {setData,data,displayDataModel,setDisplayDataModel}=useContext(dataContext);
     const [excelData,setExcelData]=useState([]);
     const [csvData,setCsvData]=useState([]);
+    const [numberM,setNumberM]=useState("");
+    const [nameM,setNameM]=useState("");
 
     const handleExcelFile=async(event)=>{
         const file=event.target.files[0];
@@ -73,6 +75,18 @@ const DataModel=()=>{
         console.log(data)
     }
 
+    const addNewNumber = () => {
+        if(nameM!=="" && numberM!==""){
+            const newDetails={'name':nameM,"number":numberM}
+            const addDetails=[...data];
+            addDetails.push(newDetails);
+            setData(addDetails);
+            setNameM("");
+            setNumberM("");
+        }
+        
+    }
+
     return(
         <>
         {displayDataModel&& 
@@ -85,8 +99,12 @@ const DataModel=()=>{
                     <h3 className=''  style={{color:"brown"}}>Upload a CSV file</h3>
                     <input type="file" onChange={handleCsvFile} />
                     {csvData.length>0 && <button className='excel-btn' onClick={()=>{handleUseCsv()}}>Use CSV Data</button>}
-                    <h3 className=''  style={{color:"brown"}}>Get the data through API</h3>
-                    <input type="text" placeholder="Enter the API" className='apiEnter' />
+                    <h3 className=''  style={{color:"brown"}}>Manually add the Data</h3>
+                    <input type="text" placeholder="Enter the name" onChange={(e)=>{setNameM(e.target.value)}} value={nameM} className='manuallyEnter' />
+                    <input type="text" placeholder="Enter the number" onChange={(e)=>{setNumberM(e.target.value)}} value={numberM} className='manuallyEnter' />
+                    <button className='addManualBtn' onClick={()=>{addNewNumber()}}>Add</button>
+                    {/* <h3 className=''  style={{color:"brown"}}>Get the data through API</h3>
+                    <input type="text" placeholder="Enter the API" className='apiEnter' /> */}
                 </div>
             </div>
         }

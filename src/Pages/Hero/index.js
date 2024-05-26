@@ -1,6 +1,10 @@
 import {useState,useContext,useEffect} from 'react';
-
-import './index.css'
+// import { IoAddCircleSharp } from "react-icons/io5";
+import { FaSave } from "react-icons/fa";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import './index.css';
+import * as XLSX from 'xlsx';
 import { dataContext } from '../../Context/data';
 
 const Hero=()=>{
@@ -38,6 +42,48 @@ const Hero=()=>{
         console.log(file)
         setAttachFile(file)
       };
+    
+      const generatePDF = async () => {
+        let requiredData=details.filter(obj=>obj.check===true);
+        requiredData=requiredData.map(dat=>({name:dat.name,number:dat.number,status:dat.status}))
+        const doc = new jsPDF();
+        const docWidth = doc.internal.pageSize.getWidth();
+        const margin = 20;
+        const headerFontSize = 17;
+        // const rowHeight = 10;
+    
+        // Header
+        doc.setFontSize(headerFontSize);
+        doc.text('WhatsApp Message Delivery Report', margin, margin + headerFontSize);
+        doc.line(margin, margin + headerFontSize + 5, docWidth - margin, margin + headerFontSize + 5);
+    
+        // Column definitions (adjust column widths as needed)
+        const columns = [
+          { title: 'Name', dataKey: 'name', width: docWidth / 3 },
+          { title: 'Number', dataKey: 'number', width: docWidth / 3 },
+          { title: 'Status', dataKey: 'status', width: docWidth / 3 },
+        ];
+    
+        // Table generation using jsPDF-autotable
+        const tableProps = {
+          startY: margin * 2 + headerFontSize + 10,
+          theme: 'grid',
+          columnStyles: { cellPadding: 5 },
+          columns,
+        };
+        doc.autoTable(columns, requiredData, tableProps);
+        doc.save('messagesDeliveryReport.pdf');
+       };
+
+        const exportExcel=()=>{
+            let requiredData=details.filter(obj=>obj.check===true);
+            requiredData=requiredData.map(dat=>({name:dat.name,number:dat.number,status:dat.status}))
+            const sheet = requiredData.map((row) => Object.values(row)); // Extract values
+            const workbook = XLSX.utils.book_new();
+            const worksheet = XLSX.utils.aoa_to_sheet(sheet);
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Contacts'); // Sheet name
+            XLSX.writeFile(workbook, 'deliveryReport.xlsx');
+        }
       
 
     return(
@@ -54,6 +100,11 @@ const Hero=()=>{
                         </label>
                     </div>
                 </div>
+                <div className="collect-data">
+                <button className="export-option" onClick={exportExcel} disabled={false}>EXCEL <FaSave className='save-option' /></button>
+                    <button className="export-option" onClick={generatePDF} disabled={false}>PDF <FaSave className='save-option' /></button>
+                </div>
+                
             </div>
             <div className="table-header">
                 <span className='table-cell'>NAME</span>
@@ -63,7 +114,7 @@ const Hero=()=>{
             </div>
             {details && <div className='table-footer'>
                 {details.map((detail,index)=>{
-                    const {name,number,check,status }= detail;
+                    const {name,number,check="TRUE",status="NILL" }= detail;
                     return(<div className='table-values'>
                         <span className='table-cell-values'>{name}</span>
                     <span className='table-cell-values'>{number}</span>
@@ -71,6 +122,7 @@ const Hero=()=>{
                     <span className={`table-cell-values ${status==="SUCCESS" && 'success-message'} ${status==="FAILURE"&& 'failure-message'}`} >{status}</span></div>
                     )
                 })}
+         
             </div>}
         </div>
     )
