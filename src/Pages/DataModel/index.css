@@ -40,11 +40,22 @@
     left:0px;
     position:absolute;
 }
-.apiEnter{
+.manuallyEnter{
     border-radius:5px;
     border:none;
     outline:none;
     height:5%;
     width:75%;
     padding-left:4px;
+    margin-bottom:10px;
+}
+.addManualBtn{
+    background-color:brown;
+    color:white;
+    border:none;
+    border-radius:3px;
+    cursor:pointer;
+    display:block;
+    margin-left:46%;
+    padding:7px 15px;
 }
